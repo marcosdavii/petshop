@@ -1,7 +1,10 @@
+import { AuthService } from './services/authservice';
+import { MaskDirective } from './components/directives/mask.directive';
 import { FramePageComponent } from './pages/account/master/frame.page';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -12,12 +15,18 @@ import { ProductsPageComponent } from './pages/store/products-page/products-page
 import { CartPageComponent } from './pages/store/cart-page/cart-page.component';
 import { LoginPageComponent } from './pages/account/login-page/login-page.component';
 import { ProductCardComponent } from './components/store/product-card/product-card.component';
+import { DataService } from './services/data.service';
+import { LoadingComponent } from './components/shared/loading/loading.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ProfilePageComponent } from './pages/account/profile-page/profile-page.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    MaskDirective,
     NavbarComponent,
     LoginPageComponent,
     ResetPasswordPageComponent,
@@ -26,14 +35,20 @@ import { ProductCardComponent } from './components/store/product-card/product-ca
     PetsPageComponent,
     CartPageComponent,
     ProductsPageComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    LoadingComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [DataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
